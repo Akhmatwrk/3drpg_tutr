@@ -18,6 +18,9 @@ namespace RPG.SceneManagement
         [SerializeField] int sceneToLoad = -1;
         [SerializeField] Transform spawnPoint;
         [SerializeField] DestinationIndex destination;
+        [SerializeField] float FadeOutTime = 1f;
+        [SerializeField] float FadeInTime = 0.5f;
+        [SerializeField] float fadeWaitTime = 1f;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -37,6 +40,9 @@ namespace RPG.SceneManagement
 
             DontDestroyOnLoad(this.gameObject);
 
+            Fader fader = FindObjectOfType<Fader>();
+            yield return fader.FadeOut(FadeOutTime);
+
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
             print("New Scene Loaded");
 
@@ -45,9 +51,10 @@ namespace RPG.SceneManagement
             Portal otherPortal = GetOtherPortal();
 
             player.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnPoint.position);
-            //playerPosition.position = otherPortal.spawnPoint.position;
-
             player.transform.rotation = otherPortal.spawnPoint.rotation;
+
+            yield return new WaitForSeconds(fadeWaitTime);
+            yield return fader.FadeIn(FadeInTime);
 
             Destroy(this.gameObject);
         }
