@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -45,20 +43,20 @@ namespace RPG.SceneManagement
             yield return fader.FadeOut(FadeOutTime);
 
             //Save current level
-            SavingWrapper wrapper = FindObjectOfType<SavingWrapper>();
-            wrapper.Save();
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            savingWrapper.Save();
 
             //Load new scene
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
             //Load current level
-            wrapper.Load();
+            savingWrapper.Load();
 
             //Set player position
             Portal otherPortal = GetOtherPortal();
             UpdatePlayer(otherPortal);
 
-            wrapper.Save();
+            savingWrapper.Save();
 
             //Fade In
             yield return new WaitForSeconds(fadeWaitTime);
