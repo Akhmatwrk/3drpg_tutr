@@ -55,7 +55,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttack: 1.5
-  handTransform: {fileID: 3755702484045154935}
+  leftHandTransform: {fileID: 3755702484045228575}
+  rightHandTransform: {fileID: 3755702484045154935}
   defaultWeapon: {fileID: 11400000, guid: aefb0444008c8864e89707d4a407806e, type: 2}
 --- !u!1001 &3755702484045612019
 PrefabInstance:
@@ -118,6 +119,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3f6fc0cf5e5d31c458bc74ede87cb8ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+--- !u!4 &3755702484045228575 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 403948, guid: 679ff741e12a7e740819ede24a7000b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 3755702484045612019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3755702484045154935 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7,
