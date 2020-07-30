@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6c8ba0cfa55c64d9475d531ba7e525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenAttack: 1.5
+  timeBetweenAttack: 0.5
   leftHandTransform: {fileID: 3755702484045228575}
   rightHandTransform: {fileID: 3755702484045154935}
   defaultWeapon: {fileID: 11400000, guid: aefb0444008c8864e89707d4a407806e, type: 2}
