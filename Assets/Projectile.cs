@@ -1,4 +1,5 @@
 ﻿using RPG.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +11,13 @@ namespace RPG.Combat
         [SerializeField] float projectileSpeed = 5f;
         [SerializeField] bool isHoming = true;
         [SerializeField] float lifeTime = 10f;
+        [SerializeField] GameObject impactVFX;
+        [SerializeField] GameObject[] destroyOnHit = null;
+        [SerializeField] float destoryTimeAfterHit = 0.5f;
 
         float damage = 0f;
         Health target = null;
+        
 
         void Update()
         {
@@ -39,6 +44,8 @@ namespace RPG.Combat
             target = targetPosition;
             damage = weaponDamage;
             transform.LookAt(GetAimLocation());
+
+            Destroy(gameObject, lifeTime);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -52,9 +59,27 @@ namespace RPG.Combat
             }
 
             target.TakeDamage(damage);
+            projectileSpeed = 0;
 
-            Destroy(gameObject);
+            if (impactVFX != null)
+            {
+                ImpactEffect(GetAimLocation());
+            }            
+
+            foreach(GameObject toDestroy in destroyOnHit)
+            {
+                Destroy(toDestroy);
+            }
+
+            Destroy(gameObject, destoryTimeAfterHit);
         }
+
+        private void ImpactEffect(Vector3 position)
+        {
+            Instantiate(impactVFX, position, transform.rotation);
+        }
+
+
     }
 }
 

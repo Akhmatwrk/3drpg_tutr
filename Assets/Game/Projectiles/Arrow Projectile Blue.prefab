@@ -209,6 +209,11 @@ MonoBehaviour:
   projectileSpeed: 10
   isHoming: 0
   lifeTime: 10
+  impactVFX: {fileID: 2759054026217084746, guid: 845f76f4104308c4da57d3d78f09d2af,
+    type: 3}
+  destroyOnHit:
+  - {fileID: 4837306978402462691}
+  destoryTimeAfterHit: 0.5
 --- !u!1001 &4838119847725411357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -266,6 +271,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f49c6920d49ba468b083941d79f2c0, type: 3}
+--- !u!1 &4837306978402462691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1659504181823486, guid: c7f49c6920d49ba468b083941d79f2c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4838119847725411357}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4842659222040261801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4750687242688692, guid: c7f49c6920d49ba468b083941d79f2c0,
