@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
-using System;
+using RPG.Saving;
+using RPG.Resources;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         [SerializeField] float timeBetweenAttack = 2f;
         [SerializeField] Transform leftHandTransform = null;
@@ -19,7 +20,10 @@ namespace RPG.Combat
 
         private void Start()
         {
-            EquipWeapon(defaultWeapon);
+            if (currentWeapon == null)
+            {
+                EquipWeapon(defaultWeapon);
+            }            
         }
 
         void Update()
@@ -33,6 +37,11 @@ namespace RPG.Combat
         {
             currentWeapon = weapon;
             currentWeapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+        }
+
+        public Health GetTarget()
+        {
+            return target;
         }
 
         private void MovingToTarget()
@@ -76,7 +85,7 @@ namespace RPG.Combat
             if (target == null) return;
             if (currentWeapon.HasProjectile())
             {
-                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject);
             }
             else
             {
@@ -92,7 +101,7 @@ namespace RPG.Combat
 
         private void DoDamage()
         {
-            target.TakeDamage(currentWeapon.GetDamage());
+            target.TakeDamage(gameObject, currentWeapon.GetDamage());
         }
 
         private bool GetIsInRange()
@@ -116,7 +125,17 @@ namespace RPG.Combat
             GetComponent<Animator>().SetTrigger("Somewhere");
         }
 
+        public object CaptureState()
+        {
+            return currentWeapon.name;
+        }
 
+        public void RestoreState(object state)
+        {
+            string weaponName = (string)state;
+            Weapon weapon = UnityEngine.Resources.Load<Weapon>(weaponName);
+            EquipWeapon(weapon);
+        }
     }
 }
 

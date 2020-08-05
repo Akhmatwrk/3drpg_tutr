@@ -58,6 +58,19 @@ MonoBehaviour:
   leftHandTransform: {fileID: 3755702484045228575}
   rightHandTransform: {fileID: 3755702484045154935}
   defaultWeapon: {fileID: 11400000, guid: aefb0444008c8864e89707d4a407806e, type: 2}
+--- !u!114 &1117631531969980511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325308465616728959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc871f2573ee0a249b52674d1c72e724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expPoints: 0
 --- !u!1001 &3755702484045612019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,6 +156,12 @@ PrefabInstance:
       propertyPath: uniqueIdentifier
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: -2518237343505832886, guid: 65474f938bde64a48a355ddf3e03926a,
+        type: 3}
+      propertyPath: progression
+      value: 
+      objectReference: {fileID: 11400000, guid: 10ac3d20f9a06d649b0d71da010c094f,
+        type: 2}
     - target: {fileID: 1302909698, guid: 65474f938bde64a48a355ddf3e03926a, type: 3}
       propertyPath: m_Speed
       value: 5.66

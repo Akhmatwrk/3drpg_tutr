@@ -1,7 +1,4 @@
-﻿using RPG.Core;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using RPG.Resources;
 using UnityEngine;
 
 namespace RPG.Combat 
@@ -17,6 +14,7 @@ namespace RPG.Combat
 
         float damage = 0f;
         Health target = null;
+        GameObject instigator = null;
         
 
         void Update()
@@ -39,10 +37,11 @@ namespace RPG.Combat
             return target.transform.position; // + Vector3.up * targetCapsule.height / 2; for very low target position
         }
 
-        public void SetTarget(Health targetPosition, float weaponDamage)
+        public void SetTarget(Health targetPosition, float weaponDamage, GameObject instigator)
         {
             target = targetPosition;
             damage = weaponDamage;
+            this.instigator = instigator;
             transform.LookAt(GetAimLocation());
 
             Destroy(gameObject, lifeTime);
@@ -58,7 +57,7 @@ namespace RPG.Combat
                 return;
             }
 
-            target.TakeDamage(damage);
+            target.TakeDamage(instigator, damage);
             projectileSpeed = 0;
 
             if (impactVFX != null)
